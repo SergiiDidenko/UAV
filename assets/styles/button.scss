@@ -1,0 +1,32 @@
+@use "./variables" as *;
+
+.start-btn,
+.stop-btn {
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $color-yellow;
+}
+
+.start-btn:hover {
+  background: $color-orange;
+}
+
+.stop-btn {
+  background: $color-red;
+  color: $color-white;
+}
+
+.stop-btn:hover {
+  background: $color-darkred;
+}
+
+.btn-main {
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
