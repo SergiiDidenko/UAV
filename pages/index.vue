@@ -16,11 +16,13 @@ const isFlying = ref(false);
 async function fetchFlightData() {
     try {
         const response = await fetch('/api/flight');
-        if (!response.ok) throw new Error('Ошибка загрузки данных');
-        flightData.value = await response.json();
+        if (!response.ok) throw new Error(response.status);
+        const data = await response.json();
+        flightData.value = data;
     } catch (err) {
         console.error(err);
     }
+
 }
 
 function startFlight() {
@@ -33,9 +35,7 @@ function startFlight() {
             stopFlight();
             return;
         }
-
         let { speed, direction } = flightData.value[currentIndex.value];
-
         moveUAV(speed, direction);
         currentIndex.value++;
     }, 1000);
