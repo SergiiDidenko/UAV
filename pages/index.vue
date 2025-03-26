@@ -16,9 +16,11 @@ const isFlying = ref(false);
 async function fetchFlightData() {
     try {
         const response = await fetch('/api/flight');
+        const response2 = await fetch(`http://localhost:3000/flight_data.json`);
+        console.log(response2);
         if (!response.ok) throw new Error(response.status);
         const data = await response.json();
-        console.log(data);
+        console.log(response);
         flightData.value = data;
     } catch (err) {
         console.error(err);
