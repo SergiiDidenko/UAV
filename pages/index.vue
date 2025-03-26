@@ -35,7 +35,7 @@ function startFlight() {
         let { speed, direction } = flightData.value[currentIndex.value];
         moveUAV(speed, direction);
         currentIndex.value++;
-    }, 1000);
+    }, 60);
     setTimeout(() => {
         stopFlight();
     }, 20000);
@@ -50,9 +50,8 @@ function stopFlight() {
     };
 }
 
-function moveUAV(speed, direction) {
-
-    const speedPixelsPerSec = (speed / 100) * 0.3;
+function moveUAV(speed, direction,) {
+    const speedPixelsPerSec = (speed / 100) * 0.2;
     let offsetX = Math.cos(direction * (Math.PI / 180)) * speedPixelsPerSec;
     let offsetY = Math.sin(direction * (Math.PI / 180)) * speedPixelsPerSec;
 
@@ -64,7 +63,7 @@ function moveUAV(speed, direction) {
         top: `${currentY}%`,
         left: `${currentX}%`,
         transform: `translate(-50%, -50%) rotate(${Number(direction) + 90}deg)`,
-        transition: `2s linear`
+        transition: `${speedPixelsPerSec}s linear`
 
     };
 }
