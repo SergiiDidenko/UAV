@@ -16,7 +16,6 @@ const isFlying = ref(false);
 async function fetchFlightData() {
     try {
         const response = await fetch('/api/flight');
-        if (!response.ok) throw new Error(response.status);
         console.log(response);
         const data = await response.json();
         console.log(data);
