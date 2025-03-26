@@ -1,11 +1,10 @@
-import { readFile } from "fs/promises";
-import { resolve } from "path";
+import { environment } from "../environments/environment.ts";
 
 export default defineEventHandler(async () => {
   try {
-    const filePath = resolve("public/flight_data.json");
-    const jsonData = await readFile(filePath, "utf-8");
-    return JSON.parse(jsonData);
+    const response = await fetch(`${environment.apiUrl}/flight_data.json`);
+    if (!response.ok) throw new Error("Ошибка загрузки JSON");
+    return await response.json();
   } catch (error) {
     return { error };
   }

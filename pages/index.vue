@@ -18,12 +18,10 @@ async function fetchFlightData() {
         const response = await fetch('/api/flight');
         if (!response.ok) throw new Error(response.status);
         const data = await response.json();
-        console.log(data);
         flightData.value = data;
     } catch (err) {
         console.error(err);
     }
-
 }
 
 function startFlight() {
