@@ -17,9 +17,11 @@ async function fetchFlightData() {
     try {
         const data = await $fetch('/api/flight');
         flightData.value = data.data;
-        console.log(flightData.value.length);
         console.log(data);
         console.log(data.data);
+        console.log(flightData.value);
+        console.log(flightData.value.length);
+
 
 
     } catch (error) {
