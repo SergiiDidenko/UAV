@@ -15,15 +15,8 @@ let interval = null;
 const isFlying = ref(false);
 async function fetchFlightData() {
     try {
-        const data = await $fetch('/api/flight');
-        flightData.value = data.data;
-        console.log(data);
-        console.log(data.data);
-        console.log(flightData.value);
-        console.log(flightData.value.length);
-
-
-
+        const data = await $fetch('/flight_data.json');
+        flightData.value = data;
     } catch (error) {
         console.error(error);
     }
