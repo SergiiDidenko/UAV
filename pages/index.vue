@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useState } from '#imports';
 
-const flightData = ref([]);
+const flightData = useState('flightData', () => null);
 const currentIndex = ref(0);
 const uavStyle = ref({
     top: '50%',
@@ -12,18 +13,13 @@ const initialPosition = { top: '50%', left: '50%', transform: 'translate(-50%, -
 
 let interval = null;
 const isFlying = ref(false);
-
 async function fetchFlightData() {
     try {
-        const response = await fetch('/api/flight');
-        const response2 = await fetch(`http://localhost:3000/flight_data.json`);
-        console.log(response2);
-        if (!response.ok) throw new Error(response.status);
-        const data = await response.json();
-        console.log(response);
-        flightData.value = data;
-    } catch (err) {
-        console.error(err);
+        const data = await $fetch('/api/flight');
+        flightData.value = data.data;
+
+    } catch (error) {
+        console.error(error);
     }
 }
 
